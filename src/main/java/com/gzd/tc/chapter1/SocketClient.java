@@ -33,7 +33,7 @@ public class SocketClient {
                 }
                 loop = false;
             }
-            Thread.currentThread().sleep(50);
+            Thread.sleep(50);
         }
         System.out.println(sb.toString());
         socket.close();
