@@ -35,14 +35,19 @@ public class HttpServer {
             System.exit(1);
         }
         // 开始循环,等待请求
-        int i = 10;
         while (!shutdown) {
-            System.out.println(i);
             Socket socket = null;
             InputStream input = null;
             OutputStream output = null;
-
-            i++;
+            try {
+                socket = serverSocket.accept();
+                input = socket.getInputStream();
+                output = socket.getOutputStream();
+                // 创建request obj, 解析
+//                new Request
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
