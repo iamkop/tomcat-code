@@ -36,17 +36,27 @@ public class HttpServer {
         }
         // 开始循环,等待请求
         while (!shutdown) {
-            Socket socket = null;
-            InputStream input = null;
-            OutputStream output = null;
+            Socket socket;
+            InputStream input;
+            OutputStream output;
             try {
                 socket = serverSocket.accept();
                 input = socket.getInputStream();
                 output = socket.getOutputStream();
                 // 创建request obj, 解析
-//                new Request
+                Request request = new Request(input);
+                request.parse();
+                // 创建response
+                Response response = new Response(output);
+                response.setRequest(request);
+                response.sendStaticResource();
+                // 关闭socket
+                socket.close();
+                String uri = request.getUri();
+                shutdown = request.getUri().equals(SHUTDOWN_COMMAND);
             } catch (IOException e) {
                 e.printStackTrace();
+                continue;
             }
         }
     }
