@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * @author gzd
  * @date 2018/1/5 10:44
- * @desc http web 服务器 呵呵了i
+ * @desc http web 服务器
  */
 public class HttpServer {
 
